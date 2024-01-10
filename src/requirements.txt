@@ -1,0 +1,8 @@
+torch
+lightning
+pyaml
+mlflow
+dvc
+monai
+SimpleITK
+dvc_gdrive
