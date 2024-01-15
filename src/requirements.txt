@@ -6,3 +6,5 @@ dvc
 monai
 SimpleITK
 dvc_gdrive
+pillow
+matplotlib
