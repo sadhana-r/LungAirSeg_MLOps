@@ -1,0 +1,6 @@
+torch
+lightning
+monai
+SimpleITK
+pydicom
+einops
