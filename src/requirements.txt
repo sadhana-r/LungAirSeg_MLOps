@@ -9,3 +9,5 @@ dvc_gdrive
 pillow
 matplotlib
 pydicom
+einops
+dvclive

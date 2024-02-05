@@ -1,0 +1,43 @@
+stages:
+  preprocess:
+    cmd: python preprocess.py
+    deps:
+    - ../data/MontgomerySet
+    - ../data/ChinaSet_AllFiles
+    params:
+    - dataset.montgomery_image_path # Assumes params.yaml otherwise must speciffy different file name
+    - dataset.montgomery_mask_path
+    - dataset.shenzen_image_path
+    - dataset.shenzen_mask_path
+    - dataset.data_dir
+    outs:
+    - ../data/datalist.csv
+  train:
+    cmd: python train.py
+    deps:
+    - ../data/datalist.csv
+    params:
+    - pipelines/params.yaml
+    - dataset.data_dir
+    - training_parameter.batch_size
+    - training_parameter.learning_rate
+    - network_parameter.input_size
+    - network_parameter.num_classes
+    - dataset.num_workers
+    outs:
+    - .ckpt
+metrics:
+- results/metrics.json
+- dvclive/metrics.json
+- ../results1/metrics.json
+plots:
+- results/plots/metrics:
+    x: step
+- dvclive/plots/metrics:
+    x: step
+- ../results1/plots/metrics:
+    x: step
+artifacts:
+  best:
+    path: ../results1/artifacts/run_name=0_lungseg-epoch=06-val_loss=0.14.ckpt
+    type: model
